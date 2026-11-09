@@ -1,0 +1,17 @@
+# Roadmap: not built
+
+**None of this is implemented.** The working MVP covers one prepaid pickup per trip at Purdue, with manual trips, fixture travel times, explicit human approval, and fee-only escrow.
+
+| # | Feature | Prerequisites | Success criteria |
+|---|---|---|---|
+| 1 | **Bundled pickups.** Several requests on one trip with combined route, deadline and capacity checks | Multi-stop route estimator; per-trip capacity slots instead of the current one-task unique index; agreement terms covering ordering and partial failure | Two or more tasks on one trip with every deadline met in tests; no capacity overrun under concurrent acceptance; worker extra effort per task below the single-task average |
+| 2 | **Optional calendar integration** sharing only free/busy | OAuth with minimal scopes (free/busy only); consent and revocation UI; data-retention policy | No event titles or attendees stored; at least 30% of active workers opt in; fewer manual availability edits |
+| 3 | **Opt-in trip suggestions and temporary location sharing** | Time-boxed, revocable location consent; auto-expiry; a privacy review | Location kept only for the active task; no background tracking; more trips posted per active worker |
+| 4 | **Better duration estimates from task history** | Enough completed tasks per store and zone; real routing API; an evaluation set | Median absolute error of extra-effort estimates below 5 min; on-time rate above 90% at recommended terms |
+| 5 | **User-configured agent autonomy** with strict spending and commitment limits | Per-user caps (fee per task, per day), allowlisted stores and zones, an audit log, instant revoke; still no autonomy over disputes | Zero commitments outside the configured limits in adversarial tests, including prompt injection; users can review and undo within a grace period |
+| 6 | **More task categories** (e.g. print pickup, returns) with their own requirements and reputation | Category schemas, category-specific feasibility, separate reputation per category | Each category has validated required fields; reputation doesn't leak across categories; dispute rate per category ≤ the pickup baseline |
+| 7 | **Equipment borrowing** with deposits and condition evidence | Deposit escrow separate from fees; photo evidence storage (off-chain); return windows; damage dispute rules | Deposits fully refunded on on-time returns; disputes resolved within SLA using evidence |
+| 8 | **Better dispute evidence and human review tools** | Evidence upload, resolver console with history, multiple resolvers or an appeals path, and published resolution guidelines | Median resolution under 24h; no resolver timeouts; resolution consistency audited |
+| 9 | **Embedded wallets, sponsored fees, fiat onboarding** | Embedded-wallet provider, paymaster or gas sponsorship on Arc, regulated on-ramp partner, KYC as required | Students fund and receive fees without handling keys or gas; the platform-signer custody model is removed |
+| 10 | **Fraud controls** against manufactured transactions and reputation manipulation | Graph analysis of repeat pairs, velocity limits, verified-email requirement for payouts, review weighting | Detected collusion rings in synthetic tests; capped reputation gain from repeated counterparties |
+| 11 | **Multi-campus expansion**, only after demand is proven at Purdue | Purdue retention and liquidity metrics; per-campus zones, stores and fixtures; campus-domain verification list | Purdue weekly active pairs and repeat usage above target for 6+ weeks before launching campus #2 |

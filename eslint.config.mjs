@@ -18,7 +18,14 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      "contracts/**",
+      "streams/filter.js", // QuickNode filter runtime script (entry point `main` is called by Streams)
     ],
+  },
+  {
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+    },
   },
 ];
 
